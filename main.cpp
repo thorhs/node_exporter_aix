@@ -27,7 +27,7 @@ int usage(int c) {
 	std::cout << "  -i net interface statistics" << std::endl;
 	std::cout << "  -a net adapter statistics" << std::endl;
 	std::cout << "  -b net buffer statistics" << std::endl;
-	std::cout << "  -p partition statistics" << std::endl;
+	std::cout << "  -P partition statistics" << std::endl;
 
 	return 1;
 }
@@ -39,9 +39,9 @@ int main(int argc, char **argv) {
 
 	int flags = 0, port = 9100;
 
-	while((c = getopt(argc, argv, "p:CcAPMmdiabp")) != EOF) {
+	while((c = getopt(argc, argv, "p:CcAPMmdiabph?")) != EOF) {
 		switch(c) {
-			// gather_cpus_compat(output);
+			case 'p': port = std::stoi(optarg); break;
 			case 'C': flags |= PART_COMPAT; break;
 			case 'c': flags |= PART_CPU; break;
 			case 'A': flags |= PART_DISKADAPTER; break;
@@ -53,7 +53,8 @@ int main(int argc, char **argv) {
 			case 'a': flags |= PART_NETADAPTER; break;
 			case 'b': flags |= PART_NETBUFFER; break;
 			case 'P': flags |= PART_PARTITION; break;
-			case 'p': port = std::stoi(optarg); break;
+			case 'h': usage(c); return 0; break;
+			case '?': usage(c); return 0; break;
 			default:
 				  return usage(c);
 		}
