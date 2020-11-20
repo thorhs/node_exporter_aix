@@ -59,6 +59,6 @@ To see all available configuration flags:
 Please see [CONTRIBUTING.md](CONTRIBUTING.md).  We welcome issues, pull requests and general suggestions.
 
 # License
-This program is distributed under the terms of both the MIT license and the Apache License (Version 2.0).
+This program is distributed under the terms of the MIT license.
 
 See [LICENSE](LICENSE) for details.
