@@ -1,0 +1,9 @@
+name id
+strcpy(firstnetbuffer.name, FIRST_NETBUFFER)
+gauge	inuse		number of buffer currently allocated
+counter	calls		number of buffer allocations since last reset
+counter	delayed		number of delayed allocations
+counter	free		number of free calls
+counter	failed		number of failed allocations
+gauge	highwatermark	high threshold for number of buffer allocated
+counter	freed		umber of buffers freed

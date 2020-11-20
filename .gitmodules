@@ -1,0 +1,6 @@
+[submodule "Simple-Web-Server"]
+	path = Simple-Web-Server
+	url = https://gitlab.com/eidheim/Simple-Web-Server.git
+[submodule "asio"]
+	path = asio
+	url = https://github.com/chriskohlhoff/asio.git

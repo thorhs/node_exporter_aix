@@ -1,0 +1,77 @@
+gauge	online_cpus				number of virtual CPUs currently online on the partition
+gauge	max_cpus				maximum number of virtual CPUs this parition can ever have
+gauge	min_cpus				minimum number of virtual CPUs this partition must have
+gauge	online_memory				amount of memory currently online
+gauge	max_memory				maximum amount of memory this partition can ever have
+gauge	min_memory				minimum amount of memory this partition must have
+gauge	entitled_proc_capacity			number of processor units this partition is entitled to receive
+gauge	max_proc_capacity			maximum number of processor units this partition can ever have
+gauge	min_proc_capacity			minimum number of processor units this partition must have
+gauge	proc_capacity_increment			increment value to the entitled capacity
+gauge	unalloc_proc_capacity			Unallocated processor units in the shared processor pool, to which this partition belongs.
+gauge	var_proc_capacity_weight		Unallocated variable capacity, weight units in shared processor pool, to which this partition belongs.
+gauge	unalloc_var_proc_capacity_weight	of variable processor capacity weight units currently unallocated  in the shared processor pool this partition belongs to
+gauge	online_phys_cpus_sys			number of physical CPUs currently active in the system containing this partition
+gauge	max_phys_cpus_sys			maximum possible number of physical CPUs in the system containing this partition
+gauge	phys_cpus_pool				Available physical CPUs in the shared processor pool, to which this partition belongs.
+counter	puser					raw number of physical processor tics in user mode
+counter	psys					raw number of physical processor tics in system mode
+counter	pidle					raw number of physical processor tics idle
+counter	pwait					raw number of physical processor tics waiting for I/O
+counter	pool_idle_time				number of clock tics a processor in the shared pool was idle
+counter	phantintrs				number of phantom interrupts received by the partition
+counter	invol_virt_cswitch			number involuntary virtual CPU context switches
+counter	vol_virt_cswitch			number voluntary virtual CPU context switches
+counter	timebase_last				Total number of clock ticks
+gauge	reserved_pages				Currenlty number of 16GB pages. Cannot participate in DR operations
+gauge	reserved_pagesize			Currently 16GB pagesize Cannot participate in DR operations
+counter	idle_donated_purr			number of idle cycles donated by a dedicated partition enabled for donation
+counter	idle_donated_spurr			number of idle spurr cycles donated by a dedicated partition enabled for donation
+counter	busy_donated_purr			number of busy cycles donated by a dedicated partition enabled for donation
+counter	busy_donated_spurr			number of busy spurr cycles donated by a dedicated partition enabled for donation
+counter	idle_stolen_purr			number of idle cycles stolen by the hypervisor from a dedicated partition
+counter	idle_stolen_spurr			number of idle spurr cycles stolen by the hypervisor from a dedicated partition
+counter	busy_stolen_purr			number of busy cycles stolen by the hypervisor from a dedicated partition
+counter	busy_stolen_spurr			number of busy spurr cycles stolen by the hypervisor from a dedicated partition
+gauge	shcpus_in_sys				Number of physical processors allocated for Shared Processor use, across all shared processors pool (i.e Pool ID=0).
+gauge	max_pool_capacity			Maximum processor capacity of shared processor pool, to which this partition belongs.
+gauge	entitled_pool_capacity			Entitled processor capacity of shared processor pool, to which this partition belongs.
+counter	pool_max_time				Summation of maximum time(in nano seconds) that could be consumed by the Shared processor pool, to which this parttion belongs
+counter	pool_busy_time				Summation of busy (non-idle) time (in nano seconds) accumulated across all partitions in the Shared processor pool, to which this partition belongs.
+counter	pool_scaled_busy_time			Summation of busy (non-idle) time (in nano seconds) accumulated across all partitions in the Shared Processor  pool, to which this partition belongs. The time is against rated/nominal frequency
+counter	shcpu_tot_time				Summation of total time (in nano seconds) across all physical processors allocated for shared processor (i.e Pool ID=0) use, across all share processor pools 
+counter	shcpu_busy_time				Summation of busy (non-idle) time (in nano seconds) accumulated across all physical processors allocated for shared processor (i.e pool ID=0)use, across all share processor pools.
+counter	shcpu_scaled_busy_time			Summation of busy (non-idle) time (in nano seconds) accumulated across all physical processors for shared processor (i.e Pool ID=0)use, across all share processor pools. The time is against rated/nominal frequency.
+gauge	var_mem_weight				variable memory capacity weight
+gauge	iome					I/O memory entitlement of the partition in bytes
+gauge	pmem					Physical memory currently backing the partition's logical memory in bytes
+counter	hpi					number of hypervisor page-ins
+counter	hpit					Time spent in hypervisor page-ins (in nanoseconds)
+gauge	hypv_pagesize				Hypervisor page size in KB
+gauge	online_lcpus				Number of online logical cpus
+gauge	smt_thrds				Number of SMT threads
+counter	puser_spurr				number of spurr cycles spent in user mode
+counter	psys_spurr				number of spurr cycles spent in kernel mode
+counter	pidle_spurr				number of spurr cycles spent in idle mode
+counter	pwait_spurr				number of spurr cycles spent in wait mode
+gauge	spurrflag				set if running in spurr mode
+gauge	power_save_mode				Power save mode for the LPAR. Introduced through LI 53K PRF : Feature 728292
+gauge	true_memory				True Memory Size in 4KB pages
+gauge	expanded_memory				Expanded Memory Size in 4KB pages
+gauge	target_memexp_factr			Target Memory Expansion Factor scaled by 100
+gauge	current_memexp_factr			Current Memory Expansion Factor scaled by 100
+gauge	target_cpool_size			Target Compressed Pool Size in bytes
+gauge	max_cpool_size				Max Size of Compressed Pool in bytes
+gauge	min_ucpool_size				Min Size of Uncompressed Pool in bytes
+gauge	ame_deficit_size			Deficit memory size in bytes
+counter	cmcs_total_time				Total CPU time spent due to active memory expansion
+counter	purr_coalescing				If the calling partition is authorized to see pool wide statistics then PURR cycles consumed to coalesce data else set to zero.
+counter	spurr_coalescing			If the calling partition is authorized to see pool wide statistics then SPURR cycles consumed to coalesce data else set to zero.
+gauge	 MemPoolSize 				Indicates the memory pool size of the pool that the partition belongs to (in bytes)., mpsz 
+gauge	  IOMemEntInUse				I/O memory entitlement of the LPAR in use in bytes. iomu
+gauge	  IOMemEntFree				free I/O memory entitlement in bytes.  iomf
+gauge	  IOHighWaterMark			high water mark of I/O memory entitlement usage in bytes. iohwn
+counter	purr_counter				number of purr cycles spent in user + kernel mode
+counter	spurr_counter				number of spurr cycles spent in user + kernel mode
+gauge	real_free				free real memory (in 4KB pages)
+gauge	real_avail				number of pages available for user application (memfree + numperm - minperm - minfree )

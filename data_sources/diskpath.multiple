@@ -1,0 +1,24 @@
+name id
+strcpy(firstdiskpath.name, FIRST_DISKPATH)
+counter	xrate		__rxfers: number of reads via the path
+counter	xfers		number of transfers via the path
+counter	rblks		512 bytes blocks written via the path
+counter	wblks		512 bytes blocks read via the path
+counter	time		amount of time disks are active
+counter	q_full		"service" queue full occurrence count (number of times the disk is not accepting any more request)
+counter	rserv		read or receive service time
+counter	rtimeout	number of read request timeouts
+counter	rfailed		number of failed read requests
+counter	min_rserv	min read or receive service time
+counter	max_rserv	max read or receive service time
+counter	wserv		write or send service time
+counter	wtimeout	number of write request timeouts
+counter	wfailed		number of failed write requests
+counter	min_wserv	min write or send service time
+counter	max_wserv	max write or send service time
+counter	wq_depth	instantaneous wait queue depth (number of requests waiting to be sent to disk)
+counter	wq_sampled	accumulated sampled dk_wq_depth
+counter	wq_time		accumulated wait queueing time
+counter	wq_min_time	min wait queueing time
+counter	wq_max_time	max wait queueing time
+counter	q_sampled	accumulated sampled dk_q_depth

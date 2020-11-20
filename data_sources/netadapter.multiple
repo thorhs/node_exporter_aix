@@ -1,0 +1,37 @@
+name id
+strcpy(firstnetadapter.name, FIRST_NETADAPTER)
+counter	tx_packets			Transmit Packets on interface
+counter	tx_bytes			Transmit Bytes on interface
+counter	tx_interrupts			Transfer Interrupts
+counter	tx_errors			Transmit Errors
+counter	tx_packets_dropped		Packets Dropped at the time of Data Transmission
+counter	tx_queue_size			Maximum Packets on Software Transmit Queue
+gauge	tx_queue_len			Transmission Queue Length
+counter	tx_queue_overflow		Transmission Queue Overflow
+counter	tx_broadcast_packets		Number of Broadcast Packets Transmitted
+counter	tx_multicast_packets		Number of Multicast packets Transmitted
+counter	tx_carrier_sense		Lost Carrier Sense signal count
+counter	tx_DMA_underrun			Count of DMA Under-runs for Transmission
+counter	tx_lost_CTS_errors		The number of unsuccessful transmissions due to the loss of the Clear-to-Send signal error
+counter	tx_max_collision_errors		Maximum Collision Errors at Transmission
+counter	tx_late_collision_errors	Late Collision Errors at Transmission
+counter	tx_deferred			The number of packets deferred for Transmission.
+counter	tx_timeout_errors		Time Out Errors for Transmission
+counter	tx_single_collision_count	Count of Single Collision error at Transmission
+counter	tx_multiple_collision_count	Count of Multiple Collision error at Transmission
+counter	rx_packets			Receive Packets on interface
+counter	rx_bytes			Receive Bytes on interface
+counter	rx_interrupts			Receive Interrupts
+counter	rx_errors			Input errors on interface
+counter	rx_packets_dropped		The number of packets accepted by the device driver for transmission which were not (for any reason) given to the device.
+counter	rx_bad_packets			Count of Bad Packets Received.
+counter	rx_multicast_packets		Number of MultiCast Packets Received
+counter	rx_broadcast_packets		Number of Broadcast Packets Received
+counter	rx_CRC_errors			Count of Packets Received with CRC errors
+counter	rx_DMA_overrun			Count of DMA over-runs for Data Receival.
+counter	rx_alignment_errors		Packets Received with Alignment Error
+counter	rx_noresource_errors		Packets Received with No Resource Errors
+counter	rx_collision_errors		Packets Received with Collision errors
+counter	rx_packet_tooshort_errors	Count of Short Packets Received.
+counter	rx_packet_toolong_errors	Count of Too Long Packets Received.
+counter	rx_packets_discardedbyadapter	Count of Received Packets discarded by Adapter.

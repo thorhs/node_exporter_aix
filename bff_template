@@ -1,0 +1,23 @@
+Package Name: node_exporter_aix
+Package VRMF: VERSION
+Update: N
+Fileset
+  Fileset Name: node_exporter_aix.rte
+  Fileset VRMF: VERSION
+  Fileset Description: prometheus node_exporter for AIX
+  Bosboot required: N
+  License agreement acceptance required: N
+  Include license files in this package: N
+  Requisites:
+  USRFiles
+     /usr/local/bin/node_exporter_aix
+  EOUSRFiles
+  USRLIBLPPFiles
+     Pre-installation Script: PWD/pre_install.sh
+     Post-installation Script: PWD/post_install.sh
+     Pre-deinstall Script: PWD/pre_removal.sh
+  EOUSRLIBLPPFiles
+  ROOT Part: N
+  ROOTFiles
+  EOROOTFiles
+EOFileset

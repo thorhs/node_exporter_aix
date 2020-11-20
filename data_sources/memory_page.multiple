@@ -1,0 +1,28 @@
+psize psize
+firstmemory_page.psize=0
+gauge	real_total		number of real memory frames of this page size
+gauge	real_free		number of pages on free list
+gauge	real_pinned		number of pages pinned
+gauge	real_inuse		number of pages in use
+counter	pgexct			number of page faults
+counter	pgins			number of pages paged in
+counter	pgouts			number of pages paged out
+counter	pgspins			number of page ins from paging space
+counter	pgspouts		number of page outs from paging space
+counter	scans			number of page scans by clock
+counter	cycles			number of page replacement cycles
+counter	pgsteals		number of page steals
+gauge	numperm			number of frames used for files
+gauge	numpgsp			number of pages with allocated paging space
+gauge	real_system		number of pages used by system segments. This is the sum of all the used pages in segment marked for system usage. Since segment classifications are not always guaranteed to be accurate, This number is only an approximation.
+gauge	real_user		number of pages used by non-system segments. This is the sum of all pages used in segments not marked for system usage. Since segment classifications are not always guaranteed to be accurate, This number is only an approximation.
+gauge	real_process		number of pages used by process segments. This is real_total - real_free - numperm - real_system. Since real_system is an approximation, this number is too.
+gauge	virt_active		Active virtual pages. Virtual pages are considered active if they have been accessed
+gauge	comprsd_total		Number of pages of this size compressed
+gauge	comprsd_wseg_pgs	Number of compressed working storage pages
+counter	cpgins			number of page ins of this page size to compressed pool
+counter	cpgouts			number of page outs of this page size from compressed pool
+gauge	cpool_inuse		Compressed Size of this page size in Compressed Pool
+gauge	ucpool_size		Uncompressed Pool size in bytes of this page size
+gauge	comprsd_wseg_size	Total size of the compressed working storage pages in the pool
+gauge	real_avail		number of pages (in 4KB pages) of memory available without paging out working segments

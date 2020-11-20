@@ -1,0 +1,43 @@
+gauge	virt_total		total virtual memory (in 4KB pages)
+gauge	real_total		total real memory (in 4KB pages)
+gauge	real_free		free real memory (in 4KB pages)
+gauge	real_pinned		real memory which is pinned (in 4KB pages)
+gauge	real_inuse		real memory which is in use (in 4KB pages)
+gauge	pgbad			number of bad pages
+gauge	pgexct			number of page faults
+gauge	pgins			number of pages paged in
+gauge	pgouts			number of pages paged out
+gauge	pgspins			number of page ins from paging space
+gauge	pgspouts		number of page outs from paging space
+gauge	scans			number of page scans by clock
+gauge	cycles			number of page replacement cycles
+gauge	pgsteals		number of page steals
+gauge	numperm			number of frames used for files (in 4KB pages)
+gauge	pgsp_total		total paging space (in 4KB pages)
+gauge	pgsp_free		free paging space (in 4KB pages)
+gauge	pgsp_rsvd		reserved paging space (in 4KB pages)
+gauge	real_system		real memory used by system segments (in 4KB pages). This is the sum of all the used pages in segment marked for system usage. Since segment classifications are not always guaranteed to be accurate, this number is only an approximation.
+gauge	real_user		real memory used by non-system segments (in 4KB pages). This is the sum of all pages used in segments not marked for system usage. Since segment classifications are not always guaranteed to be accurate, this number is only an approximation.
+gauge	real_process		real memory used by process segments (in 4KB pages). This is real_total-real_free-numperm-real_system. Since real_system is an approximation, this number is too.
+gauge	virt_active		Active virtual pages. Virtual pages are considered active if they have been accessed
+gauge	iome			I/O memory entitlement of the partition in bytes
+gauge	iomu			I/O memory entitlement of the partition in use in bytes
+gauge	iohwm			High water mark of I/O memory entitlement used in bytes
+gauge	pmem			Amount of physical mmeory currently backing partition's logical memory in bytes
+gauge	comprsd_total		Total numbers of pages in compressed pool (in 4KB pages)
+gauge	comprsd_wseg_pgs	Number of compressed working storage pages
+counter	cpgins			number of page ins to compressed pool
+counter	cpgouts			number of page outs from compressed pool
+gauge	true_size		True Memory Size in 4KB pages
+gauge	expanded_memory		Expanded Memory Size in 4KB pages
+gauge	comprsd_wseg_size	Total size of the compressed working storage pages in the pool
+gauge	target_cpool_size	Target Compressed Pool Size in bytes
+gauge	max_cpool_size		Max Size of Compressed Pool in bytes
+gauge	min_ucpool_size		Min Size of Uncompressed Pool in bytes
+gauge	cpool_size		Compressed Pool size in bytes
+gauge	ucpool_size		Uncompressed Pool size in bytes
+gauge	cpool_inuse		Compressed Pool Used in bytes
+gauge	ucpool_inuse		Uncompressed Pool Used in bytes
+gauge	real_avail		number of pages (in 4KB pages) of memory available without paging out working segments
+gauge	bytes_coalesced		The number of bytes of the calling partition.s logical real memory  coalesced because they contained duplicated data
+gauge	bytes_coalesced_mempool	If the calling partition is authorized to see pool wide statistics then the number of bytes of logical real memory coalesced because they contained duplicated data in the calling partition.s memory pool else set to zero.

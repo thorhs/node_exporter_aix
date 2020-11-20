@@ -1,0 +1,15 @@
+name id
+strcpy(firstnetinterface.name, FIRST_NETINTERFACE)
+gauge	type		ethernet, tokenring, etc. interpretation can be done using /usr/include/net/if_types.h
+gauge	mtu		network frame size
+counter	ipackets	number of packets received on interface
+counter	ibytes		number of bytes received on interface
+counter	ierrors		number of input errors on interface
+counter	opackets	number of packets sent on interface
+counter	obytes		number of bytes sent on interface
+counter	oerrors		number of output errors on interface
+counter	collisions	number of collisions on csma interface
+gauge	bitrate		adapter rating in bit per second
+counter	xmitdrops	number of packets not transmitted
+counter	if_iqdrops	Dropped on input, this interface
+counter	if_arpdrops	Dropped because no arp response

@@ -1,0 +1,73 @@
+name id
+strcpy(firstcpu.name, FIRST_CPU)
+counter	user			raw number of clock ticks spent in user mode
+counter	sys			raw number of clock ticks spent in system mode
+counter	idle			raw number of clock ticks spent idle
+counter	wait			raw number of clock ticks spent waiting for I/O
+counter	pswitch			number of context switches (changes of currently running process)
+counter	syscall			number of system calls executed
+counter	sysread			number of read system calls executed
+counter	syswrite		number of write system calls executed
+counter	sysfork			number of fork system call executed
+counter	sysexec			number of exec system call executed
+counter	readch			number of characters tranferred with read system call
+counter	writech			number of characters tranferred with write system call
+counter	bread			number of block reads
+counter	bwrite			number of block writes
+counter	lread			number of logical read requests
+counter	lwrite			number of logical write requests
+counter	phread			number of physical reads (reads on raw device)
+counter	phwrite			number of physical writes (writes on raw device)
+counter	iget			number of inode lookups
+counter	namei			number of vnode lookup from a path name
+counter	dirblk			number of 512-byte block reads by the directory search routine to locate an entry for a file
+counter	msg			number of IPC message operations
+counter	sema			number of IPC semaphore operations
+counter	minfaults		number of page faults with no I/O
+counter	majfaults		number of page faults with disk I/O
+counter	puser			raw number of physical processor tics in user mode
+counter	psys			raw number of physical processor tics in system mode
+counter	pidle			raw number of physical processor tics idle
+counter	pwait			raw number of physical processor tics waiting for I/O
+counter	redisp_sd0		number of thread redispatches within the scheduler affinity domain 0
+counter	redisp_sd1		number of thread redispatches within the scheduler affinity domain 1
+counter	redisp_sd2		number of thread redispatches within the scheduler affinity domain 2
+counter	redisp_sd3		number of thread redispatches within the scheduler affinity domain 3
+counter	redisp_sd4		number of thread redispatches within the scheduler affinity domain 4
+counter	redisp_sd5		number of thread redispatches within the scheduler affinity domain 5
+counter	migration_push		number of thread migrations from the local runque to another queue due to starvation load balancing
+counter	migration_S3grq		number of  thread migrations from the global runque to the local runque resulting in a move accross scheduling domain 3
+counter	migration_S3pul		number of  thread migrations from another processor's runque resulting in a move accross scheduling domain 3
+counter	invol_cswitch		number of  involuntary thread context switches
+counter	vol_cswitch		number of  voluntary thread context switches
+gauge	runque			number of  threads on the runque
+gauge	bound			number of  bound threads
+counter	decrintrs		number of decrementer tics interrupts
+counter	mpcrintrs		number of mpc's received interrupts
+counter	mpcsintrs		number of mpc's sent interrupts
+counter	devintrs		number of device interrupts
+counter	softintrs		number of offlevel handlers called
+counter	phantintrs		number of phantom interrupts
+counter	idle_donated_purr	number of idle cycles donated by a dedicated partition enabled for donation
+counter	idle_donated_spurr	number of idle spurr cycles donated by a dedicated partition enabled for donation
+counter	busy_donated_purr	number of busy cycles donated by a dedicated partition enabled for donation
+counter	busy_donated_spurr	number of busy spurr cycles donated by a dedicated partition enabled for donation
+counter	idle_stolen_purr	number of idle cycles stolen by the hypervisor from a dedicated partition
+counter	idle_stolen_spurr	number of idle spurr cycles stolen by the hypervisor from a dedicated partition
+counter	busy_stolen_purr	number of busy cycles stolen by the hypervisor from a dedicated partition
+counter	busy_stolen_spurr	number of busy spurr cycles stolen by the hypervisor from a dedicated partition
+counter	hpi			number of hypervisor page-ins
+counter	hpit			Time spent in hypervisor page-ins (in nanoseconds)
+counter	puser_spurr		number of spurr cycles spent in user mode
+counter	psys_spurr		number of spurr cycles spent in kernel mode
+counter	pidle_spurr		number of spurr cycles spent in idle mode
+counter	pwait_spurr		number of spurr cycles spent in wait mode
+gauge spurrflag			set if running in spurr mode
+counter	localdispatch		number of local thread dispatches on this logical CPU
+counter	neardispatch		number of near thread dispatches on this logical CPU
+counter	fardispatch		number of far thread dispatches on this logical CPU
+counter	cswitches		Context switches
+counter	tb_last			timebase counter
+gauge state			Show whether the CPU is offline or online
+gauge	vtb_last		Last virtual timebase read
+gauge	icount_last		Last instruction count read
