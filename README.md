@@ -11,6 +11,12 @@ below list all existing collectors.
 All collectors are enabled by default.  If collectors are specified on the
 command line, only thoes collectors will be enabled.
 
+## Default port
+Default port used by this node exporter is :9100.
+
+The port can be changed with the -p flag:
+    ./build/node_exporter_aix -p 9101
+
 ### Enabled by default
 
 flag | Description
