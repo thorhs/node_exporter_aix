@@ -15,6 +15,7 @@ command line, only thoes collectors will be enabled.
 Default port used by this node exporter is :9100.
 
 The port can be changed with the -p flag:
+
     ./build/node_exporter_aix -p 9101
 
 ### Enabled by default
@@ -43,6 +44,7 @@ Prerequisites:
 * bos.adt.insttools (lpp, for packaging as .bff)
 
 Building:
+
     export PATH=/opt/freeware/bin:$PATH # If required, to use GNU make
     git submodule init
     git submodule update
