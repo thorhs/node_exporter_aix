@@ -3,16 +3,16 @@ GIT_VERSION := $(shell git --no-pager describe --tags --always --long | sed "s/v
 all: build/node_exporter_aix
 
 build/node_exporter_aix: build/server.o build/collectors.o build/main.o
-	g++ -Wall -Werror -fmax-errors=5 -fconcepts -std=c++17 -pthread -lperfstat -I/usr/local/include -I/usr/local/include/simple-web-server -DUSE_STANDALONE_ASIO -DASIO_STANDALONE -DASIO_HAS_PTHREADS -static-libgcc -Wl,-bstatic -lstdc++ -lgcc -Wl,-bdynamic -o build/node_exporter_aix build/server.o build/collectors.o build/main.o
+	g++ -Wall -Werror -fmax-errors=5 -fconcepts -std=c++17 -pthread -lperfstat -DUSE_STANDALONE_ASIO -DASIO_STANDALONE -DASIO_HAS_PTHREADS -static-libgcc -Wl,-bstatic -lstdc++ -lgcc -Wl,-bdynamic -o build/node_exporter_aix build/server.o build/collectors.o build/main.o
 
 build/server.o: server.cpp
-	g++ -Wall -Werror -fmax-errors=5 -fconcepts -std=c++17 -pthread -lperfstat -I/usr/local/include -I/usr/local/include/simple-web-server -I Simple-Web-Server -I asio/asio/include -DUSE_STANDALONE_ASIO -DASIO_STANDALONE -DASIO_HAS_PTHREADS -c -o build/server.o server.cpp
+	g++ -Wall -Werror -fmax-errors=5 -fconcepts -std=c++17 -pthread -lperfstat -I Simple-Web-Server -I asio/asio/include -DUSE_STANDALONE_ASIO -DASIO_STANDALONE -DASIO_HAS_PTHREADS -c -o build/server.o server.cpp
 
 build/main.o: main.cpp
-	g++ -Wall -Werror -fmax-errors=5 -fconcepts -std=c++17 -pthread -lperfstat -I/usr/local/include -I/usr/local/include/simple-web-server -DUSE_STANDALONE_ASIO -DASIO_STANDALONE -DASIO_HAS_PTHREADS -D PROG_VERSION="\"$(GIT_VERSION)\"" -c -o build/main.o main.cpp
+	g++ -Wall -Werror -fmax-errors=5 -fconcepts -std=c++17 -pthread -lperfstat -DUSE_STANDALONE_ASIO -DASIO_STANDALONE -DASIO_HAS_PTHREADS -D PROG_VERSION="\"$(GIT_VERSION)\"" -c -o build/main.o main.cpp
 
 build/collectors.o: collectors.cpp generated/diskpaths.cpp generated/diskadapters.cpp generated/memory_pages.cpp generated/memory.cpp generated/cpus.cpp generated/disks.cpp generated/netinterfaces.cpp generated/netadapters.cpp generated/netbuffers.cpp generated/partition.cpp
-	g++ -Wall -Werror -fmax-errors=5 -fconcepts -std=c++17 -pthread -lperfstat -I/usr/local/include -I/usr/local/include/simple-web-server -DUSE_STANDALONE_ASIO -DASIO_STANDALONE -DASIO_HAS_PTHREADS  -c -o build/collectors.o collectors.cpp
+	g++ -Wall -Werror -fmax-errors=5 -fconcepts -std=c++17 -pthread -lperfstat -DUSE_STANDALONE_ASIO -DASIO_STANDALONE -DASIO_HAS_PTHREADS  -c -o build/collectors.o collectors.cpp
 
 generated/%s.cpp: data_sources/%.multiple scripts/generate_multiple.ksh templates/generate_multiple.template
 	ksh scripts/generate_multiple.ksh $* generated/$*s.cpp
