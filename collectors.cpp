@@ -8,6 +8,9 @@
 
 std::string generate_static_labels() {
 	std::ostringstream labels;
+	static std::string output_str;
+	
+	if (output_str.length() > 0) return output_str;
 
 	// perfstat_partition_total_t partition;
 	perfstat_partition_config_t partition_config;
@@ -26,7 +29,9 @@ std::string generate_static_labels() {
 
 	labels << "machine_serial=\"" << partition_config.machineID << "\",lpar=\"" << partition_config.partitionname << "\",group_id=\"" << partition_config.groupid << "\"";
 
-	return labels.str();
+	output_str = labels.str();
+
+	return output_str;
 }
 
 void output_cpus_stat_mode(std::ostringstream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_cpu_t cpus[], size_t cpu_count, const std::function<double (perfstat_cpu_t&)>& func) {
