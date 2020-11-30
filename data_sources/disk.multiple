@@ -3,6 +3,7 @@ strcpy(firstdisk.name, FIRST_DISK)
 gauge	size		size of the disk (in MB)
 gauge	free		free portion of the disk (in MB)
 gauge	bsize		disk block size (in bytes)
+counter	xrate		number of transfers from disk
 counter	xfers		number of transfers to/from disk
 counter	wblks		number of blocks written to disk
 counter	rblks		number of blocks read from disk
