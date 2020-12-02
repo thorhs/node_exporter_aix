@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <strings.h>
 
+#include "node_exporter_aix.hpp"
+
 std::string generate_static_labels() {
 	std::ostringstream labels;
 	static std::string output_str;
@@ -94,6 +96,46 @@ void gather_cpu_compat(std::ostringstream& response, const std::string& static_l
 	output_cpu_stat(response, static_labels, "node_context_switches", "counter", "Total number of context switches.",    cpu, [](perfstat_cpu_total_t& cpu) { return (double)cpu.pswitch; });
 	output_cpu_stat(response, static_labels, "node_forks",            "counter", "Total number of forks.",               cpu, [](perfstat_cpu_total_t& cpu) { return (double)cpu.sysfork; });
 	output_cpu_stat(response, static_labels, "node_intr",             "counter", "Total number of interrupts serviced.", cpu, [](perfstat_cpu_total_t& cpu) { return (double)cpu.decrintrs + (double)cpu.mpcrintrs + (double)cpu.mpcsintrs + (double)cpu.devintrs + (double)cpu.softintrs; });
+}
+
+void gather_filesystems(std::ostringstream& response, const std::string& static_labels) {
+	std::vector<filesystem> filesystems = stat_filesystems(list_mounts());
+
+	response << "# HELP node_filesystem_size_bytes Filesystem size in bytes." << std::endl;
+	response << "# TYPE node_filesystem_size_bytes gauge" << std::endl;
+	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
+		response << "node_filesystem_size_bytes{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << (*it).size_bytes << std::endl;
+	}
+
+	response << "# HELP node_filesystem_free_bytes Filesystem free space in bytes." << std::endl;
+	response << "# TYPE node_filesystem_free_bytes gauge" << std::endl;
+	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
+		response << "node_filesystem_free_bytes{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << (*it).free_bytes << std::endl;
+	}
+
+	response << "# HELP node_filesystem_avail_bytes Filesystem space available to non-root users in bytes." << std::endl;
+	response << "# TYPE node_filesystem_avail_bytes gauge" << std::endl;
+	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
+		response << "node_filesystem_avail_bytes{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << (*it).avail_bytes << std::endl;
+	}
+
+	response << "# HELP node_filesystem_files Filesystem total file nodes." << std::endl;
+	response << "# TYPE node_filesystem_files gauge" << std::endl;
+	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
+		response << "node_filesystem_files{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << (*it).files << std::endl;
+	}
+
+	response << "# HELP node_filesystem_files_free Filesystem total free file nodes." << std::endl;
+	response << "# TYPE node_filesystem_files_free gauge" << std::endl;
+	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
+		response << "node_filesystem_files_free{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << (*it).files_free << std::endl;
+	}
+
+	response << "# HELP node_filesystem_files_avail Filesystem available file nodes to non-root users." << std::endl;
+	response << "# TYPE node_filesystem_files_avail gauge" << std::endl;
+	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
+		response << "node_filesystem_files_avail{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << (*it).files_avail << std::endl;
+	}
 }
 
 #include "generated/diskadapters.cpp"
