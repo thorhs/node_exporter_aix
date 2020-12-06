@@ -66,6 +66,9 @@ int main(int argc, char **argv) {
 
 	std::cout << "Node exporter for AIX version " PROG_VERSION " listening on port " << port << std::endl;
 
+	setenv("PATH", "/bin:/sbin:/usr/bin:/usr/sbin", 1);
+	setenv("LIBPATH", NULL, 1);
+
 	return start_server(port, flags);
 }
 
