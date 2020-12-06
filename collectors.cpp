@@ -29,7 +29,11 @@ std::string generate_static_labels() {
 		return "";
 	}
 
-	labels << "machine_serial=\"" << partition_config.machineID << "\",lpar=\"" << partition_config.partitionname << "\",group_id=\"" << partition_config.groupid << "\"";
+	labels  << "machine_serial=\"" << partition_config.machineID
+		<< "\",lpar=\"" << partition_config.partitionname
+		<< "\",cpupool_id=\"" << partition_config.processor_poolid
+		<< "\",group_id=\"" << partition_config.groupid
+		<< "\"";
 
 	output_str = labels.str();
 
