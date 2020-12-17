@@ -32,7 +32,7 @@ std::vector<mountpoint> list_mounts() {
 	for(int i=0; i<rc; i++) {
 		mounts = (struct vmount *)current;
 
-		if(mounts->vmt_gfstype == MNT_J2) {
+		if(mounts->vmt_gfstype == MNT_J2 || mounts->vmt_gfstype == MNT_JFS) {
 			if(vmt2datasize(mounts, VMT_STUB) && vmt2datasize(mounts, VMT_OBJECT)) {
 				struct mountpoint mp;
 				mp.device = vmt2dataptr(mounts, VMT_OBJECT);
