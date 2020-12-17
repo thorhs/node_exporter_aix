@@ -78,13 +78,7 @@ std::vector<filesystem> stat_filesystems(std::vector<mountpoint> mounts) {
 
 #ifdef TESTING
 int main() {
-	auto mounts = list_mounts();
-
-	for(auto it = mounts.begin(); it != mounts.end(); it++) {
-		std::cout << *it << std::endl;
-	}
-
-	auto fs = stat_filesystems(mounts);
+	auto fs = stat_filesystems(list_mounts());
 
 	for(auto it = fs.begin(); it != fs.end(); it++) {
 		std::cout << (*it).mountpoint << " " << (*it).size_bytes/1024 << " " << (*it).free_bytes/1024 << std::endl;
