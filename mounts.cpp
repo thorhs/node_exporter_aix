@@ -37,6 +37,15 @@ std::vector<mountpoint> list_mounts() {
 				struct mountpoint mp;
 				mp.device = vmt2dataptr(mounts, VMT_OBJECT);
 				mp.mountpoint = vmt2dataptr(mounts, VMT_STUB);
+
+				if (mounts->vmt_gfstype == MNT_J2) {
+					mp.fstype = "jfs2";
+				} else if (mounts->vmt_gfstype == MNT_JFS) {
+					mp.fstype = "jfs";
+				} else {
+					mp.fstype = "unknown";
+				}
+
 				output.push_back(mp);
 			}
 		}
@@ -63,6 +72,7 @@ std::vector<filesystem> stat_filesystems(std::vector<mountpoint> mounts) {
 		struct filesystem fs;
 		fs.mountpoint = (*it).mountpoint;
 		fs.device = (*it).device;
+		fs.fstype = (*it).fstype;
 		fs.avail_bytes = s.f_bavail * s.f_bsize;
 		fs.size_bytes = s.f_blocks * s.f_bsize;
 		fs.free_bytes = s.f_bfree * s.f_bsize;
@@ -81,7 +91,7 @@ int main() {
 	auto fs = stat_filesystems(list_mounts());
 
 	for(auto it = fs.begin(); it != fs.end(); it++) {
-		std::cout << (*it).mountpoint << " " << (*it).size_bytes/1024 << " " << (*it).free_bytes/1024 << std::endl;
+		std::cout << (*it).mountpoint << " " << (*it).fstype << " " << (*it).size_bytes/1024 << " " << (*it).free_bytes/1024 << std::endl;
 	}
 
 	return 0;

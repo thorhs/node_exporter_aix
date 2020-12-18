@@ -36,11 +36,13 @@ extern void gather_filesystems(std::ostringstream& response, const std::string& 
 struct mountpoint {
 	std::string mountpoint;
 	std::string device;
+	std::string fstype;
 };
 
 struct filesystem {
 	std::string mountpoint;
 	std::string device;
+	std::string fstype;
 	u_int64 avail_bytes; // f_bavail
 	u_int64 size_bytes; // f_bfrsize
 	u_int64 free_bytes; // f_bfree
