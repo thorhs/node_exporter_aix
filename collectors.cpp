@@ -109,37 +109,37 @@ void gather_filesystems(std::ostringstream& response, const std::string& static_
 	response << "# HELP node_filesystem_size_bytes Filesystem size in bytes." << std::endl;
 	response << "# TYPE node_filesystem_size_bytes gauge" << std::endl;
 	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
-		response << "node_filesystem_size_bytes{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).size_bytes << std::endl;
+		response << "node_filesystem_size_bytes{device=\"" << (*it).device << "\",fstype=\"" << (*it).fstype << "\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).size_bytes << std::endl;
 	}
 
 	response << "# HELP node_filesystem_free_bytes Filesystem free space in bytes." << std::endl;
 	response << "# TYPE node_filesystem_free_bytes gauge" << std::endl;
 	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
-		response << "node_filesystem_free_bytes{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).free_bytes << std::endl;
+		response << "node_filesystem_free_bytes{device=\"" << (*it).device << "\",fstype=\"" << (*it).fstype << "\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).free_bytes << std::endl;
 	}
 
 	response << "# HELP node_filesystem_avail_bytes Filesystem space available to non-root users in bytes." << std::endl;
 	response << "# TYPE node_filesystem_avail_bytes gauge" << std::endl;
 	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
-		response << "node_filesystem_avail_bytes{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).avail_bytes << std::endl;
+		response << "node_filesystem_avail_bytes{device=\"" << (*it).device << "\",fstype=\"" << (*it).fstype << "\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).avail_bytes << std::endl;
 	}
 
 	response << "# HELP node_filesystem_files Filesystem total file nodes." << std::endl;
 	response << "# TYPE node_filesystem_files gauge" << std::endl;
 	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
-		response << "node_filesystem_files{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).files << std::endl;
+		response << "node_filesystem_files{device=\"" << (*it).device << "\",fstype=\"" << (*it).fstype << "\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).files << std::endl;
 	}
 
 	response << "# HELP node_filesystem_files_free Filesystem total free file nodes." << std::endl;
 	response << "# TYPE node_filesystem_files_free gauge" << std::endl;
 	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
-		response << "node_filesystem_files_free{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).files_free << std::endl;
+		response << "node_filesystem_files_free{device=\"" << (*it).device << "\",fstype=\"" << (*it).fstype << "\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).files_free << std::endl;
 	}
 
 	response << "# HELP node_filesystem_files_avail Filesystem available file nodes to non-root users." << std::endl;
 	response << "# TYPE node_filesystem_files_avail gauge" << std::endl;
 	for(auto it = filesystems.begin(); it < filesystems.end(); it++) {
-		response << "node_filesystem_files_avail{device=\"" << (*it).device << "\",fstype=\"jfs2\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).files_avail << std::endl;
+		response << "node_filesystem_files_avail{device=\"" << (*it).device << "\",fstype=\"" << (*it).fstype << "\",mountpoint=\"" << (*it).mountpoint << "\"," << static_labels << "} " << std::fixed << std::setprecision(0) << (*it).files_avail << std::endl;
 	}
 }
 
