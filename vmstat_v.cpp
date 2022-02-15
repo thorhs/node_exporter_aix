@@ -69,7 +69,7 @@ static const std::unordered_map<std::string, vmstat_v_metric> vmstat_v_metrics({
 		{"compressed pages",
 			vmstat_v_metric{"aix_compressed_pages", "gauge", "Number of compressed memory pages"}},
 		{"external pager filesystem I/Os blocked with no fsbuf",
-			vmstat_v_metric{"ext_pager_fs_no_fsbuf", "counter", "Number of external pager client filesystem I/O requests blocked because no fsbuf was available. JFS2 is an external pager client filesystem. Fsbuf are pinned memory buffers used to hold I/O requests in the filesystem layer"}},
+			vmstat_v_metric{"aix_ext_pager_fs_no_fsbuf", "counter", "Number of external pager client filesystem I/O requests blocked because no fsbuf was available. JFS2 is an external pager client filesystem. Fsbuf are pinned memory buffers used to hold I/O requests in the filesystem layer"}},
 		{"file pages",
 			vmstat_v_metric{"aix_file_pages", "counter", "Number of 4 KB pages that are currently used by the file cache"}},
 		{"free pages",
