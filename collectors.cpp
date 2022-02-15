@@ -41,7 +41,7 @@ std::string generate_static_labels() {
 	return output_str;
 }
 
-void output_cpus_stat_mode(std::ostringstream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_cpu_t cpus[], size_t cpu_count, const std::function<u_longlong_t (perfstat_cpu_t&)>& func) {
+void output_cpus_stat_mode(std::ostream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_cpu_t cpus[], size_t cpu_count, const std::function<u_longlong_t (perfstat_cpu_t&)>& func) {
 	response << "# HELP " << name << " " << help << std::endl;
 	response << "# TYPE " << name << " counter"  << std::endl;
 
@@ -50,7 +50,7 @@ void output_cpus_stat_mode(std::ostringstream& response, const std::string& stat
 	}
 }
 
-void output_cpus_stat(std::ostringstream& response, const std::string& static_labels, const std::string& name, const std::string& help, perfstat_cpu_t cpus[], size_t cpu_count, const std::function<u_longlong_t (perfstat_cpu_t&)>& func) {
+void output_cpus_stat(std::ostream& response, const std::string& static_labels, const std::string& name, const std::string& help, perfstat_cpu_t cpus[], size_t cpu_count, const std::function<u_longlong_t (perfstat_cpu_t&)>& func) {
 	response << "# HELP " << name << " " << help << std::endl;
 	response << "# TYPE " << name << " counter"  << std::endl;
 
@@ -59,7 +59,7 @@ void output_cpus_stat(std::ostringstream& response, const std::string& static_la
 	}
 }
 
-void gather_cpus_compat(std::ostringstream& response, const std::string& static_labels) {
+void gather_cpus_compat(std::ostream& response, const std::string& static_labels) {
 	int cpu_count = perfstat_cpu(NULL, NULL, sizeof(perfstat_cpu_t), 0);
 
 	perfstat_cpu_t cpus[cpu_count];
@@ -79,14 +79,14 @@ void gather_cpus_compat(std::ostringstream& response, const std::string& static_
 }
 
 
-void output_cpu_stat(std::ostringstream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_cpu_total_t cpu, const std::function<u_longlong_t (perfstat_cpu_total_t&)>& func) {
+void output_cpu_stat(std::ostream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_cpu_total_t cpu, const std::function<u_longlong_t (perfstat_cpu_total_t&)>& func) {
 	response << "# HELP " << name << " " << help << std::endl;
 	response << "# TYPE " << name << " " << type << std::endl;
 
 	response << name << "{" << static_labels << "} " << std::fixed << std::setprecision(0) << func(cpu) << std::endl;
 }
 
-void gather_cpu_compat(std::ostringstream& response, const std::string& static_labels) {
+void gather_cpu_compat(std::ostream& response, const std::string& static_labels) {
 	perfstat_cpu_total_t cpu;
 
 	if(perfstat_cpu_total(NULL, &cpu, sizeof(perfstat_cpu_total_t), 1) <= 0) {
@@ -103,7 +103,7 @@ void gather_cpu_compat(std::ostringstream& response, const std::string& static_l
 	output_cpu_stat(response, static_labels, "node_intr",             "counter", "Total number of interrupts serviced.", cpu, [](perfstat_cpu_total_t& cpu) { return (u_longlong_t)cpu.decrintrs + (u_longlong_t)cpu.mpcrintrs + (u_longlong_t)cpu.mpcsintrs + (u_longlong_t)cpu.devintrs + (u_longlong_t)cpu.softintrs; });
 }
 
-void gather_filesystems(std::ostringstream& response, const std::string& static_labels) {
+void gather_filesystems(std::ostream& response, const std::string& static_labels) {
 	std::vector<filesystem> filesystems = stat_filesystems(list_mounts());
 
 	response << "# HELP node_filesystem_size_bytes Filesystem size in bytes." << std::endl;

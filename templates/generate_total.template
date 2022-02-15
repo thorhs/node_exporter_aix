@@ -1,11 +1,11 @@
-void output_STRUCT_NAME_stat(std::ostringstream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_STRUCT_NAME_total_t STRUCT_NAME, const std::function<double (perfstat_STRUCT_NAME_total_t&)>& func) {
+void output_STRUCT_NAME_stat(std::ostream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_STRUCT_NAME_total_t STRUCT_NAME, const std::function<double (perfstat_STRUCT_NAME_total_t&)>& func) {
 	response << "# HELP " << name << " " << help << std::endl;
 	response << "# TYPE " << name << " " << type << std::endl;
 
 	response << name << "{" << static_labels << "} " << func(STRUCT_NAME) << std::endl;
 }
 
-void gather_STRUCT_NAME(std::ostringstream& response, const std::string& static_labels) {
+void gather_STRUCT_NAME(std::ostream& response, const std::string& static_labels) {
 	perfstat_STRUCT_NAME_total_t STRUCT_NAME;
 
 	if(perfstat_STRUCT_NAME_total(NULL, &STRUCT_NAME, sizeof(perfstat_STRUCT_NAME_total_t), 1) <= 0) {

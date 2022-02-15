@@ -13,25 +13,27 @@
 #define PART_NETBUFFER    (1<<9)
 #define PART_PARTITION    (1<<10)
 #define PART_FILESYSTEMS  (1<<11)
+#define PART_VMSTAT_V     (1<<11)
 
 
 extern int start_server(int port, int flags);
 
 extern std::string generate_static_labels();
 
-extern void gather_cpus_compat(std::ostringstream& response, const std::string& static_labels);
-extern void gather_cpu_compat(std::ostringstream& response, const std::string& static_labels);
-extern void gather_diskadapters(std::ostringstream& response, const std::string& static_labels);
-extern void gather_diskpaths(std::ostringstream& response, const std::string& static_labels);
-extern void gather_memory_pages(std::ostringstream& response, const std::string& static_labels);
-extern void gather_memory(std::ostringstream& response, const std::string& static_labels);
-extern void gather_cpus(std::ostringstream& response, const std::string& static_labels);
-extern void gather_disks(std::ostringstream& response, const std::string& static_labels);
-extern void gather_netinterfaces(std::ostringstream& response, const std::string& static_labels);
-extern void gather_netadapters(std::ostringstream& response, const std::string& static_labels);
-extern void gather_netbuffers(std::ostringstream& response, const std::string& static_labels);
-extern void gather_partition(std::ostringstream& response, const std::string& static_labels);
-extern void gather_filesystems(std::ostringstream& response, const std::string& static_labels);
+extern void gather_cpus_compat(std::ostream& response, const std::string& static_labels);
+extern void gather_cpu_compat(std::ostream& response, const std::string& static_labels);
+extern void gather_diskadapters(std::ostream& response, const std::string& static_labels);
+extern void gather_diskpaths(std::ostream& response, const std::string& static_labels);
+extern void gather_memory_pages(std::ostream& response, const std::string& static_labels);
+extern void gather_memory(std::ostream& response, const std::string& static_labels);
+extern void gather_cpus(std::ostream& response, const std::string& static_labels);
+extern void gather_disks(std::ostream& response, const std::string& static_labels);
+extern void gather_netinterfaces(std::ostream& response, const std::string& static_labels);
+extern void gather_netadapters(std::ostream& response, const std::string& static_labels);
+extern void gather_netbuffers(std::ostream& response, const std::string& static_labels);
+extern void gather_partition(std::ostream& response, const std::string& static_labels);
+extern void gather_filesystems(std::ostream& response, const std::string& static_labels);
+extern void gather_vmstat_v(std::ostream& response, const std::string& static_labels);
 
 struct mountpoint {
 	std::string mountpoint;
