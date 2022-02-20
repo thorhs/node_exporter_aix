@@ -143,6 +143,16 @@ void gather_filesystems(std::ostream& response, const std::string& static_labels
 	}
 }
 
+/*
+// Workaround the fact that the structure and function are not called the same
+int perfstat_fcstat(perfstat_id_t *name,
+                      perfstat_diskadapter_t* userbuff,
+                      int sizeof_userbuff,
+                      int desired_number) {
+	perfstat_virtualdiskadapter(name, userbuff, sizeof_userbuff, desired_number);
+}
+*/
+
 #include "generated/diskadapters.cpp"
 #include "generated/diskpaths.cpp"
 #include "generated/memory_pages.cpp"
@@ -153,3 +163,4 @@ void gather_filesystems(std::ostream& response, const std::string& static_labels
 #include "generated/netadapters.cpp"
 #include "generated/netbuffers.cpp"
 #include "generated/partition.cpp"
+#include "generated/fcstats.cpp"

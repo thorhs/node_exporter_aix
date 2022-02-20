@@ -1,0 +1,22 @@
+name id PortWWN:hex PortFcId:hex
+strcpy(firstfcstat.name, FIRST_VFCHOST)
+counter InputRequests                 Number of Input Requests
+counter OutputRequests                Number of Output Requests
+counter InputBytes                    Number of Input Bytes
+counter OutputBytes                   Number of Output Bytes
+counter NoDMAResourceCnt              Count of DMA failures due to no DMA Resource available
+counter NoCmdResourceCnt              Count of failures to allocate a command due to no command resource available
+counter TxFrames                      Number of frames transmitted
+counter TxWords                       Fiber Channel Kbytes transmitted
+counter RxFrames                      Number of Frames Received.
+counter RxWords                       Fiber Channel Kbytes Received
+counter LIPCount                      Count of LIP(Loop Initialization Protocol) Events received in case we have FC-AL (arbitrated loop - a FC topology)
+counter NOSCount                      Count of NOS(Not_Operational) Events. This  indicates a link failure state.  Count is number of times such events  occurred.  high level, this just indicates that we lost connection to FC network.
+counter ErrorFrames                   Number of frames received with the CRC Error
+counter DumpedFrames                  Number of lost frames
+counter LinkFailureCount              Count of Link failures
+counter LossofSyncCount               Count of loss of sync
+counter LossofSignal                  Count of loss of Signal.
+counter PrimitiveSeqProtocolErrCount  number of times a primitive sequence was in error.
+counter InvalidTxWordCount            Count of Invalid Transmission words received
+counter InvalidCRCCount               Count of CRC Errors in a Received Frame

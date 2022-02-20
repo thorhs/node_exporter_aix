@@ -30,6 +30,7 @@ int usage(int c) {
 	std::cout << "  -P partition statistics" << std::endl;
 	std::cout << "  -f filesystem statistics" << std::endl;
 	std::cout << "  -v vmstat -v statistics" << std::endl;
+	std::cout << "  -F fc adapter statistics" << std::endl;
 
 	return 1;
 }
@@ -41,7 +42,7 @@ int main(int argc, char **argv) {
 
 	int flags = 0, port = 9100;
 
-	while((c = getopt(argc, argv, "p:CcADPMmdiabpfvh?")) != EOF) {
+	while((c = getopt(argc, argv, "p:CcADPMmdiabpfvFh?")) != EOF) {
 		switch(c) {
 			case 'p': port = std::stoi(optarg); break;
 			case 'C': flags |= PART_COMPAT; break;
@@ -57,6 +58,7 @@ int main(int argc, char **argv) {
 			case 'P': flags |= PART_PARTITION; break;
 			case 'f': flags |= PART_FILESYSTEMS; break;
 			case 'v': flags |= PART_VMSTAT_V; break;
+			case 'F': flags |= PART_FCSTAT_E; break;
 			case 'h': usage(c); return 0; break;
 			case '?': usage(c); return 0; break;
 			default:
