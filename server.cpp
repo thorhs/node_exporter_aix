@@ -48,7 +48,11 @@ int start_server(int port, int flags) {
 
 	std::thread server_thread([&server]() {
 			// Start server
-			server.start();
+			try {
+				server.start();
+			} catch (const SimpleWeb::system_error &e) {
+				std::cerr << "Error starting HTTP server: " << e.what() << std::endl;
+			}
 			});
 
 
