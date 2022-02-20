@@ -28,29 +28,6 @@ std::string exec(const char* cmd) {
     return result;
 }
 
-void parse_output(std::string s) {
-	static const std::string WHITESPACE = " \n\r\t\f\v";
-	std::stringstream ss(s);
-	std::string to;
-
-	while(std::getline(ss, to, '\n')) {
-		size_t start = to.find_first_not_of(WHITESPACE);
-		if (start == std::string::npos) return; // No data found
-
-		size_t delim = to.find_first_of(WHITESPACE, start);
-		if (delim == std::string::npos) return; // No data found
-
-		std::string v = to.substr(start, delim - start);
-		std::string k = to.substr(delim + 1);
-
-		std::replace_if(k.begin(), k.end(), std::not1(std::ptr_fun( (int(*)(int))std::isalnum )), '_');
-		float f = std::stof(v);
-
-		std::cout.precision(1);
-		std::cout << k << "=" << std::fixed << f << std::endl;
-	}
-}
-
 void output_vmstat_v_metric(std::ostream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, const std::string value) {
 	response << "# HELP " << name << " " << help << std::endl;
 	response << "# TYPE " << name << " " << type << std::endl;
@@ -115,10 +92,10 @@ void gather_vmstat_v(std::ostream& response, const std::string& static_labels) {
 
 	while(std::getline(ss, to, '\n')) {
 		size_t start = to.find_first_not_of(WHITESPACE);
-		if (start == std::string::npos) return; // No data found
+		if (start == std::string::npos) continue; // No data found
 
 		size_t delim = to.find_first_of(WHITESPACE, start);
-		if (delim == std::string::npos) return; // No data found
+		if (delim == std::string::npos) continue; // No data found
 
 		std::string v = to.substr(start, delim - start);
 		std::string k = to.substr(delim + 1);
