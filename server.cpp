@@ -9,22 +9,36 @@
 #include <stdio.h>
 #include <strings.h>
 #include <memory>
+#include <iostream>
+
 
 #include "node_exporter_aix.hpp"
 
 using HttpServer = SimpleWeb::Server<SimpleWeb::HTTP>;
-
+std::mutex myMutex;
 
 int start_server(int port, int flags) {
 
 	HttpServer server;
-	server.config.port = port;
+    server.on_error = [](std::shared_ptr<HttpServer::Request> request, const SimpleWeb::error_code ec) {
+        // 117 is normal because of the async nature
+        if(ec.value() == 117 || ec.value() == 2) {
+            return;
+        }
+        std::cout << "error encountered "  << ec.message() << " "  << " "  << ec.value() << std::endl;
+        std::cout << "error encountered with request" << request->content.string()  << std::endl;
 
+    };
+    server.config.port = port;
 	server.default_resource["GET"] = [flags](std::shared_ptr<HttpServer::Response> response, std::shared_ptr<HttpServer::Request> request) {
+        std::cout << "starting request for metrics" << std::endl;
+
+        std::lock_guard<std::mutex> guard(myMutex);
 		std::ostringstream output;
+        std::cout << "generating static labels" << std::endl;
 
 		auto static_labels = generate_static_labels();
-
+        std::cout << "generated static labels" << std::endl;
 		if(flags & PART_COMPAT)       gather_cpu_compat(output, static_labels);
 		if(flags & PART_COMPAT)       gather_cpus_compat(output, static_labels);
 		if(flags & PART_CPU)          gather_cpus(output, static_labels);
@@ -49,7 +63,8 @@ int start_server(int port, int flags) {
 	std::thread server_thread([&server]() {
 			// Start server
 			try {
-				server.start();
+                std::cout << "Starting server thread" << std::endl;
+                server.start();
 			} catch (const SimpleWeb::system_error &e) {
 				std::cerr << "Error starting HTTP server: " << e.what() << std::endl;
 			}
