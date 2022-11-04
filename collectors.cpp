@@ -62,7 +62,7 @@ void output_cpus_stat(std::ostream& response, const std::string& static_labels, 
 void gather_cpus_compat(std::ostream& response, const std::string& static_labels) {
 	int cpu_count = perfstat_cpu(NULL, NULL, sizeof(perfstat_cpu_t), 0);
 
-	perfstat_cpu_t cpus[cpu_count];
+    perfstat_cpu_t *cpus = new perfstat_cpu_t[cpu_count];
 	perfstat_id_t firstcpu;
 
 	strcpy(firstcpu.name, FIRST_CPU);
@@ -76,6 +76,8 @@ void gather_cpus_compat(std::ostream& response, const std::string& static_labels
 	output_cpus_stat_mode(response, static_labels, "node_cpu", "idle", "Seconds the cpus spent in each mode.", cpus, cpu_count, [](perfstat_cpu_t& cpu) { return (u_longlong_t)cpu.idle/100; });
 	output_cpus_stat_mode(response, static_labels, "node_cpu", "sys",  "Seconds the cpus spent in each mode.", cpus, cpu_count, [](perfstat_cpu_t& cpu) { return (u_longlong_t)cpu.sys/100;  });
 	output_cpus_stat_mode(response, static_labels, "node_cpu", "wait", "Seconds the cpus spent in each mode.", cpus, cpu_count, [](perfstat_cpu_t& cpu) { return (u_longlong_t)cpu.wait/100; });
+    delete [] cpus;
+
 }
 
 

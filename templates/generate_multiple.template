@@ -5,7 +5,7 @@ void output_STRUCT_NAME_stat_mode(std::ostream& response, const std::string& sta
 	for(size_t i=0; i<STRUCT_NAME_count; i++) {
 		response << name << "{STRUCT_NAME=\"" << STRUCT_NAMEs[i].NAME_FIELD << "\",";
 		response << "LABEL=\"" << FORMAT_START STRUCT_NAMEs[i].LABEL FORMAT_END << "\",";
-                response << static_labels << "} " << func(STRUCT_NAMEs[i]) << std::endl;
+        response << static_labels << "} " << func(STRUCT_NAMEs[i]) << std::endl;
 	}
 }
 
