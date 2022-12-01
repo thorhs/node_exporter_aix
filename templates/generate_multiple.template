@@ -18,6 +18,11 @@ void gather_STRUCT_NAMEs(std::ostream& response, const std::string& static_label
 
 	int STRUCT_NAME_count = perfstat_STRUCT_NAME(NULL, NULL, sizeof(perfstat_STRUCT_NAME_t), 0);
     std::cout << "STRUCT_NAME count is " << STRUCT_NAME_count << std::endl;
+    if (STRUCT_NAME_count == -1) {
+        std::cout << "STRUCT_NAME count returned error " << errno << std::endl;
+        perror("Error calling STRUCT_NAME");
+        return;
+    }
 	perfstat_STRUCT_NAME_t *STRUCT_NAMEs = new perfstat_STRUCT_NAME_t[STRUCT_NAME_count];
 	perfstat_ID_STRUCT_t firstSTRUCT_NAME;
 

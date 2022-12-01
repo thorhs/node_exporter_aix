@@ -3,6 +3,7 @@
 #include <string>
 #include <thread>
 #include <sstream>
+#include <libperfstat.h>
 
 #include "server_http.hpp"
 
@@ -17,8 +18,10 @@ using HttpServer = SimpleWeb::Server<SimpleWeb::HTTP>;
 
 int start_server(int port, int flags) {
 
+    perfstat_reset();
 	HttpServer server;
 	server.config.port = port;
+    server.config.timeout_request = 30;
 
 	server.default_resource["GET"] = [flags](std::shared_ptr<HttpServer::Response> response, std::shared_ptr<HttpServer::Request> request) {
 		std::ostringstream output;
