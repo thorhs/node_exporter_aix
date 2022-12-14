@@ -101,14 +101,23 @@ Add space to filesystem to opt folder where yum items are installed
 Start installing dev tools
 
 `curl -O https://public.dhe.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc-7.1/gcc/gcc-8-1.aix7.1.ppc.rpm`
+
 `rpm -i gcc-8-1.aix7.1.ppc.rpm`
+
 `export PATH=/opt/freeware/bin/:$PATH`
+
 `yum install gcc-cplusplus-8-1.aix7.1.ppc.rpm`
+
 `curl -O https://public.dhe.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/git/git-core-2.35.1-1.aix7.1.ppc.rpm`
+
 `yum install git-core-2.35.1-1.aix7.1.ppc.rpm`
+
 `curl -O https://public.dhe.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/curl/curl-7.83.1-1.aix7.1.ppc.rpm`
+
 `yum install curl-7.83.1-1.aix7.1.ppc.rpm`
+
 `curl -O https://public.dhe.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/make/make-4.3-1.aix6.1.ppc.rpm`
+
 `yum install make-4.3-1.aix6.1.ppc.rpm`
 
 `smitty install_all`
