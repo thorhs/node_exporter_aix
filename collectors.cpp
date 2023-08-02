@@ -41,7 +41,7 @@ std::string generate_static_labels() {
 	return output_str;
 }
 
-void output_cpus_stat_mode(std::ostream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_cpu_t cpus[], size_t cpu_count, const std::function<u_longlong_t (perfstat_cpu_t&)>& func) {
+void output_cpus_stat_mode(std::ostream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_cpu_t *cpus, size_t cpu_count, const std::function<u_longlong_t (perfstat_cpu_t&)>& func) {
 	response << "# HELP " << name << " " << help << std::endl;
 	response << "# TYPE " << name << " counter"  << std::endl;
 
@@ -60,9 +60,10 @@ void output_cpus_stat(std::ostream& response, const std::string& static_labels, 
 }
 
 void gather_cpus_compat(std::ostream& response, const std::string& static_labels) {
+	perfstat_cpu_t *cpus;
 	int cpu_count = perfstat_cpu(NULL, NULL, sizeof(perfstat_cpu_t), 0);
-
-	perfstat_cpu_t cpus[cpu_count];
+	cpus = (perfstat_cpu_t*)calloc(cpu_count, sizeof(perfstat_cpu_t));
+	//perfstat_cpu_t cpus[cpu_count];
 	perfstat_id_t firstcpu;
 
 	strcpy(firstcpu.name, FIRST_CPU);
@@ -76,6 +77,7 @@ void gather_cpus_compat(std::ostream& response, const std::string& static_labels
 	output_cpus_stat_mode(response, static_labels, "node_cpu", "idle", "Seconds the cpus spent in each mode.", cpus, cpu_count, [](perfstat_cpu_t& cpu) { return (u_longlong_t)cpu.idle/100; });
 	output_cpus_stat_mode(response, static_labels, "node_cpu", "sys",  "Seconds the cpus spent in each mode.", cpus, cpu_count, [](perfstat_cpu_t& cpu) { return (u_longlong_t)cpu.sys/100;  });
 	output_cpus_stat_mode(response, static_labels, "node_cpu", "wait", "Seconds the cpus spent in each mode.", cpus, cpu_count, [](perfstat_cpu_t& cpu) { return (u_longlong_t)cpu.wait/100; });
+	free(cpus);
 }
 
 
