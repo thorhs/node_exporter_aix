@@ -1,4 +1,4 @@
-void output_STRUCT_NAME_stat_mode(std::ostream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_STRUCT_NAME_t STRUCT_NAMEs[], size_t STRUCT_NAME_count, const std::function<double (perfstat_STRUCT_NAME_t&)>& func) {
+void output_STRUCT_NAME_stat_mode(std::ostream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_STRUCT_NAME_t *STRUCT_NAMEs, size_t STRUCT_NAME_count, const std::function<double (perfstat_STRUCT_NAME_t&)>& func) {
 	response << "# HELP " << name << " " << help << std::endl;
 	response << "# TYPE " << name << " " << type << std::endl;
 
@@ -10,9 +10,10 @@ void output_STRUCT_NAME_stat_mode(std::ostream& response, const std::string& sta
 }
 
 void gather_STRUCT_NAMEs(std::ostream& response, const std::string& static_labels) {
+	perfstat_STRUCT_NAME_t *STRUCT_NAMEs;
 	int STRUCT_NAME_count = perfstat_STRUCT_NAME(NULL, NULL, sizeof(perfstat_STRUCT_NAME_t), 0);
-
-	perfstat_STRUCT_NAME_t STRUCT_NAMEs[STRUCT_NAME_count];
+	STRUCT_NAMEs = (perfstat_STRUCT_NAME_t*)calloc(STRUCT_NAME_count, sizeof(perfstat_STRUCT_NAME_t));
+	//perfstat_STRUCT_NAME_t STRUCT_NAMEs[STRUCT_NAME_count];
 	perfstat_ID_STRUCT_t firstSTRUCT_NAME;
 
 	INITIALIZER;
