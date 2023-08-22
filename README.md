@@ -33,6 +33,8 @@ flag | Description
 -a | net adapter statistics
 -b | net buffer statistics
 -p | partition statistics
+-U | Busy Consumed CPU statistics
+-R | Process statistics
 
 ## Install package
     installp -ac -d <package_file.bff>
