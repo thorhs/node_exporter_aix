@@ -29,5 +29,5 @@ done
 tail -n +3  $input | sed "s/\"/'/g" | while read type name desc; do
 	echo "\toutput_${struct_name}_stat_mode(response, static_labels, \"aix_${struct_name}_${name}\", \"${type}\", \"${desc}\", ${struct_name}s, ${struct_name}_count, [](perfstat_${struct_name}_t& ${struct_name}) { return ${struct_name}.${name}; });" >> $output
 done
-
+echo "delete [] "$struct_name"s;" >> $output
 echo "}" >> $output

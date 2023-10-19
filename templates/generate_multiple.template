@@ -1,24 +1,40 @@
+#include <iostream>
+
 void output_STRUCT_NAME_stat_mode(std::ostream& response, const std::string& static_labels, const std::string& name, const std::string& type, const std::string& help, perfstat_STRUCT_NAME_t STRUCT_NAMEs[], size_t STRUCT_NAME_count, const std::function<double (perfstat_STRUCT_NAME_t&)>& func) {
 	response << "# HELP " << name << " " << help << std::endl;
 	response << "# TYPE " << name << " " << type << std::endl;
 
+    std::cout << "STRUCT_NAME getting name " <<  name  << std::endl;
+
 	for(size_t i=0; i<STRUCT_NAME_count; i++) {
+        std::cout << "STRUCT_NAME index " <<  i  << std::endl;
 		response << name << "{STRUCT_NAME=\"" << STRUCT_NAMEs[i].NAME_FIELD << "\",";
 		response << "LABEL=\"" << FORMAT_START STRUCT_NAMEs[i].LABEL FORMAT_END << "\",";
-                response << static_labels << "} " << func(STRUCT_NAMEs[i]) << std::endl;
+        response << static_labels << "} " << func(STRUCT_NAMEs[i]) << std::endl;
 	}
 }
 
 void gather_STRUCT_NAMEs(std::ostream& response, const std::string& static_labels) {
-	int STRUCT_NAME_count = perfstat_STRUCT_NAME(NULL, NULL, sizeof(perfstat_STRUCT_NAME_t), 0);
 
-	perfstat_STRUCT_NAME_t STRUCT_NAMEs[STRUCT_NAME_count];
+	int STRUCT_NAME_count = perfstat_STRUCT_NAME(NULL, NULL, sizeof(perfstat_STRUCT_NAME_t), 0);
+    std::cout << "STRUCT_NAME count is " << STRUCT_NAME_count << std::endl;
+    if (STRUCT_NAME_count == -1) {
+        std::cout << "STRUCT_NAME count returned error " << errno << std::endl;
+        perror("Error calling STRUCT_NAME");
+        return;
+    }
+	perfstat_STRUCT_NAME_t *STRUCT_NAMEs = new perfstat_STRUCT_NAME_t[STRUCT_NAME_count];
 	perfstat_ID_STRUCT_t firstSTRUCT_NAME;
 
+    std::cout << "STRUCT_NAME about to init "  << std::endl;
+
 	INITIALIZER;
+
+    std::cout << "STRUCT_NAME inited "  << std::endl;
 
 	if(perfstat_STRUCT_NAME(&firstSTRUCT_NAME, STRUCT_NAMEs, sizeof(perfstat_STRUCT_NAME_t), STRUCT_NAME_count) <= 0) {
 		perror("Error calling perfstat_STRUCT_NAME");
 		return;
 	}
+
 

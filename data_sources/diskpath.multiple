@@ -17,7 +17,6 @@ counter	wfailed		number of failed write requests
 counter	min_wserv	min write or send service time
 counter	max_wserv	max write or send service time
 counter	wq_depth	instantaneous wait queue depth (number of requests waiting to be sent to disk)
-counter	wq_sampled	accumulated sampled dk_wq_depth
 counter	wq_time		accumulated wait queueing time
 counter	wq_min_time	min wait queueing time
 counter	wq_max_time	max wait queueing time

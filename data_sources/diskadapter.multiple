@@ -14,13 +14,3 @@ counter	 dk_rxfers	Number of  transfers from disk
 counter	 dk_rserv	read or receive service time
 counter	 dk_wserv	write or send service time
 counter	 min_rserv	Minimum read service time
-counter	 max_rserv	Maximum read service time
-counter	 min_wserv	Minimum Write service time
-counter	 max_wserv	Maximum write service time
-gauge	 wq_depth	driver wait queue depth
-counter	 wq_sampled	accumulated sampled dk_wq_depth
-counter	 wq_time	accumulated wait queueing time
-gauge	 wq_min_time	minimum wait queueing time
-gauge	 wq_max_time	maximum wait queueing time
-counter	 q_full		"Service" queue full occurrence count (number of times the adapter/devices connected to the adapter is not accepting any more request)
-counter	 q_sampled	accumulated sampled
